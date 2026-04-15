@@ -1,26 +1,176 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap');
+
+@theme {
+  --color-cream: #F2EDE5;
+  --color-cream-dark: #E8E1D6;
+  --color-burgundy: #7A1C2E;
+  --color-burgundy-dark: #5C1422;
+  --color-burgundy-light: #9B2A3E;
+  --color-charcoal: #1C1714;
+  --color-warm-gray: #6B5F57;
+  --color-warm-gray-light: #9C9189;
+  --color-off-white: #FAF7F3;
+
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-inter: 'Inter', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: theme(--color-cream);
+  color: theme(--color-charcoal);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: theme(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: theme(--color-burgundy-light);
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background: theme(--color-burgundy);
+  color: theme(--color-cream);
+}
+
+/* ─── Gudagott Component Styles ─── */
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: theme(--color-burgundy);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.display-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  color: theme(--color-charcoal);
+  line-height: 1.05;
+}
+
+.display-heading-italic {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  color: theme(--color-charcoal);
+  line-height: 1.08;
+}
+
+.nav-link {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  transition: color 0.3s;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.sortiment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background-color: theme(--color-cream-dark);
+}
+
+@media (max-width: 768px) {
+  .sortiment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sortiment-card {
+  background-color: theme(--color-cream);
+  padding: 3rem;
+  transition: background-color 0.5s;
+}
+
+.sortiment-card:hover {
+  background-color: theme(--color-off-white);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: theme(--color-charcoal);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-link:hover {
+  color: theme(--color-burgundy);
+}
+
+.contact-link .line {
+  width: 2rem;
+  height: 1px;
+  background-color: theme(--color-burgundy);
+  transition: width 0.3s;
+  flex-shrink: 0;
+}
+
+.contact-link:hover .line {
+  width: 3rem;
+}
+
+@keyframes orbPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 12px 4px rgba(255,255,255,0.6), 0 0 30px 8px rgba(255,255,255,0.25);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 6px 2px rgba(255,255,255,0.3), 0 0 14px 4px rgba(255,255,255,0.1);
+    transform: scale(0.75);
+  }
+}
+
+@keyframes lineFade {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes textPulse {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(255,255,255,1), 0 0 20px rgba(255,255,255,0.8), 0 0 50px rgba(255,255,255,0.4);
+  }
+  50% {
+    opacity: 0.75;
+    text-shadow: 0 0 4px rgba(255,255,255,0.3);
+  }
 }
