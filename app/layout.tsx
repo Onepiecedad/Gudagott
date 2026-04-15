@@ -4,8 +4,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Gudagott — Svenska Delikatesser i Majorna, Göteborg",
   description:
-    "Gudagott är en delikatessbutik i hjärtat av Majorna, Göteborg. Här hittar du nearproducerat kött, vilt, charkuterier, hantverksost och lokala delikatesser.",
-  keywords: "köttbutik, delikatesser, Majorna, Göteborg, chark, ost, vilt, nearproducerat",
+    "Gudagott är en delikatessbutik i hjärtat av Majorna, Göteborg. Här hittar du närproducerat kött, vilt, charkuterier, hantverksost och lokala delikatesser.",
+  keywords: "köttbutik, delikatesser, Majorna, Göteborg, chark, ost, vilt, närproducerat",
 };
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
