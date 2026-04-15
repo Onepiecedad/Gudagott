@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -47,6 +46,7 @@ export function ImageScrollHero({
 
   const shouldAnimate = enableAnimations && !shouldReduceMotion;
   const textOpacity = Math.max(0, 1 - scrollProgress * 3.2);
+  const blurAmount = 0;
   const borderRadius = Math.max(0, 12 - scrollProgress * 14);
 
   return (
@@ -73,8 +73,8 @@ export function ImageScrollHero({
             style={{
               position: "absolute",
               inset: 0,
-              backdropFilter: "none",
-              WebkitBackdropFilter: "none",
+              backdropFilter: blurAmount > 0 ? `blur(${blurAmount}px)` : "none",
+              WebkitBackdropFilter: blurAmount > 0 ? `blur(${blurAmount}px)` : "none",
               backgroundColor: `rgba(235, 228, 218, ${(1 - scrollProgress) * 0.04})`,
               transition: "backdrop-filter 0.08s linear",
             }}
@@ -115,13 +115,10 @@ export function ImageScrollHero({
                 overflow: "hidden",
                 boxShadow: "0 32px 80px rgba(28,23,20,0.45), 0 8px 24px rgba(28,23,20,0.25)",
               }}>
-                <Image
+                <img
                   src={foregroundSrc}
                   alt="Gudagott butiksinredning"
-                  fill
-                  sizes="(max-width: 768px) 78vw, 32vw"
-                  style={{ objectFit: "cover" }}
-                  priority
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
                 <div style={{
                   position: "absolute",

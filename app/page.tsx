@@ -5,10 +5,12 @@ import { motion } from "framer-motion";
 
 const C = {
   cream: "#F2EDE5",
+  creamDark: "#E8E1D6",
   burgundy: "#7A1C2E",
   burgundyDark: "#5C1422",
   charcoal: "#1C1714",
   warmGray: "#6B5F57",
+  offWhite: "#FAF7F3",
 };
 
 const fadeUp = {
@@ -24,7 +26,7 @@ const categories = [
   {
     title: "Kött & Vilt",
     description:
-      "Nöt, gris, lamm, fågel och vilt från svenska gårdar. Närproducerat och noggrant utvalt.",
+      "Nöt, gris, lamm, fågel och vilt från svenska gårdar. Nearproducerat och noggrant utvald.",
     items: ["Nötfilé", "Lammracks", "Vildsvin", "Älg & hjort", "Kyckling", "Anka"],
     accentColor: C.burgundy,
   },
@@ -49,7 +51,7 @@ const categories = [
     items: [
       "Bredsjö Blå",
       "Präst 36 mån",
-      "Västerbotten",
+      "Vasterbotten",
       "Brie & Camembert",
       "Ägg från frigående höns",
       "Smör",
@@ -61,7 +63,7 @@ const categories = [
     description:
       "Kryddor, marmelader, honung, knäckebröd och delikatesser som kompletterar hantverket.",
     items: [
-      "Lokal honung",
+      "Lokalt honung",
       "Hemkokad sylt",
       "Knäckebröd",
       "Kryddor & salt",
@@ -72,34 +74,22 @@ const categories = [
   },
 ];
 
-const openingHours = [
-  { day: "Måndag – Fredag", time: "10:00 – 18:00" },
-  { day: "Lördag", time: "10:00 – 14:00" },
-  { day: "Söndag", time: "Stängt" },
-];
-
-const contactLinks = [
-  { href: "tel:031164950", label: "031 – 16 49 50" },
-  { href: "https://www.instagram.com/gudagott/", label: "@gudagott på Instagram" },
-  { href: "https://www.facebook.com/Gudagott", label: "Gudagott på Facebook" },
-];
-
-const footerLinks = [
-  ["Sortiment", "#sortiment"],
-  ["Om oss", "#om-oss"],
-  ["Hitta oss", "#hitta-oss"],
-  ["Kontakt", "#kontakt"],
-] as const;
-
 export default function Home() {
   return (
     <main style={{ backgroundColor: C.cream, minHeight: "100vh" }}>
       <ImageScrollHero />
 
-      <section id="om-oss" className="section section-offwhite">
-        <div className="intro-shell">
+      <section id="om-oss" style={{ backgroundColor: C.offWhite, padding: "8rem 1.5rem" }}>
+        <div style={{ maxWidth: "720px", margin: "0 auto", textAlign: "center" }}>
           <motion.p
-            className="section-label intro-eyebrow"
+            style={{
+              fontSize: "11px",
+              letterSpacing: "0.35em",
+              textTransform: "uppercase",
+              color: C.burgundy,
+              marginBottom: "1.5rem",
+              fontFamily: "'Inter', sans-serif",
+            }}
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
@@ -109,7 +99,15 @@ export default function Home() {
           </motion.p>
 
           <motion.h2
-            className="display-heading-italic intro-title"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: "italic",
+              fontWeight: 300,
+              fontSize: "clamp(2.8rem, 6vw, 5rem)",
+              color: C.charcoal,
+              lineHeight: 1.06,
+              marginBottom: "2.5rem",
+            }}
             variants={fadeUp}
             custom={1}
             initial="hidden"
@@ -120,7 +118,12 @@ export default function Home() {
           </motion.h2>
 
           <motion.div
-            className="intro-divider"
+            style={{
+              width: "3rem",
+              height: "1px",
+              backgroundColor: C.burgundy,
+              margin: "0 auto 2.5rem",
+            }}
             variants={fadeUp}
             custom={2}
             initial="hidden"
@@ -129,54 +132,133 @@ export default function Home() {
           />
 
           <motion.p
-            className="intro-body"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              color: C.warmGray,
+              fontSize: "1.25rem",
+              lineHeight: 1.75,
+              fontWeight: 300,
+              maxWidth: "520px",
+              margin: "0 auto",
+            }}
             variants={fadeUp}
             custom={3}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            En kort promenad från Mariaplan hittar du oss — en butik för dig som värdesätter
+            En short promenad från Mariaplan hittar du oss — en butik för dig som värdesätter
             äkta råvaror, snillrikt hantverk och den lilla extra detaljen som gör måltiden
             minnesvärd.
           </motion.p>
         </div>
       </section>
 
-      <section id="sortiment" className="section section-cream">
-        <div className="section-shell section-shell-wide">
+      <section id="sortiment" style={{ backgroundColor: C.cream, padding: "6rem 1.5rem" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <motion.div
-            className="section-header"
+            style={{ textAlign: "center", marginBottom: "5rem" }}
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
           >
-            <p className="section-label section-header-label">Vad vi erbjuder</p>
-            <h2 className="display-heading section-header-title">Sortiment</h2>
+            <p
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.35em",
+                textTransform: "uppercase",
+                color: C.burgundy,
+                marginBottom: "1rem",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              Vad vi erbjuder
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontWeight: 300,
+                fontSize: "clamp(2rem, 4vw, 3.2rem)",
+                color: C.charcoal,
+              }}
+            >
+              Sortiment
+            </h2>
           </motion.div>
 
           <div className="sortiment-grid">
-            {categories.map((category, index) => (
+            {categories.map((cat, i) => (
               <motion.div
-                key={category.title}
+                key={cat.title}
                 className="sortiment-card"
                 variants={fadeUp}
-                custom={index * 0.4}
+                custom={i * 0.4}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
               >
                 <div
-                  className="sortiment-accent"
-                  style={{ backgroundColor: category.accentColor }}
+                  style={{
+                    width: "4px",
+                    height: "2rem",
+                    backgroundColor: cat.accentColor,
+                    marginBottom: "2rem",
+                  }}
                 />
-                <h3 className="sortiment-card-title">{category.title}</h3>
-                <p className="sortiment-card-description">{category.description}</p>
-                <ul className="sortiment-list">
-                  {category.items.map((item) => (
-                    <li key={item} className="sortiment-list-item">
-                      <span className="sortiment-list-dot" />
+                <h3
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "1.6rem",
+                    color: C.charcoal,
+                    marginBottom: "1rem",
+                    fontWeight: 400,
+                  }}
+                >
+                  {cat.title}
+                </h3>
+                <p
+                  style={{
+                    color: C.warmGray,
+                    fontSize: "0.88rem",
+                    lineHeight: 1.7,
+                    marginBottom: "2rem",
+                    fontWeight: 300,
+                    fontFamily: "'Inter', sans-serif",
+                  }}
+                >
+                  {cat.description}
+                </p>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.6rem",
+                  }}
+                >
+                  {cat.items.map((item) => (
+                    <li
+                      key={item}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.75rem",
+                        fontSize: "13px",
+                        color: C.charcoal,
+                        letterSpacing: "0.03em",
+                        fontFamily: "'Inter', sans-serif",
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: "5px",
+                          height: "5px",
+                          borderRadius: "50%",
+                          backgroundColor: C.burgundy,
+                          flexShrink: 0,
+                        }}
+                      />
                       {item}
                     </li>
                   ))}
@@ -187,18 +269,54 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="parallax-section">
-        <div className="parallax-image" />
-        <div className="parallax-overlay" />
-        <div className="parallax-content">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <p className="parallax-label">Välkommen in</p>
-            <h2 className="parallax-title">
+      <section style={{ height: "60vh", position: "relative", overflow: "hidden" }}>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: "url(/interior.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(28,23,20,0.55)" }} />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            padding: "0 1.5rem",
+          }}
+        >
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <p
+              style={{
+                fontSize: "10px",
+                letterSpacing: "0.45em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.55)",
+                marginBottom: "1.5rem",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              Välkommen in
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontStyle: "italic",
+                fontWeight: 300,
+                fontSize: "clamp(2.2rem, 5vw, 4rem)",
+                color: "white",
+                lineHeight: 1.2,
+                maxWidth: "600px",
+                margin: "0 auto",
+              }}
+            >
               Gedigen kvalitet.
               <br />
               Äkta hantverk.
@@ -207,20 +325,70 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="hitta-oss" className="section section-offwhite">
-        <div className="info-grid section-shell">
+      <section id="hitta-oss" style={{ backgroundColor: C.offWhite, padding: "8rem 1.5rem" }}>
+        <div
+          style={{
+            maxWidth: "900px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "4rem",
+          }}
+        >
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
           >
-            <p className="section-label info-label">Öppettider</p>
-            <div>
-              {openingHours.map(({ day, time }) => (
-                <div key={day} className="hours-row">
-                  <span className="hours-day">{day}</span>
-                  <span className="hours-time">{time}</span>
+            <p
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.35em",
+                textTransform: "uppercase",
+                color: C.burgundy,
+                marginBottom: "1.5rem",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              Öppettider
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+              {[
+                { dag: "Måndag – Fredag", tid: "10:00 – 18:00" },
+                { dag: "Lördag", tid: "10:00 – 14:00" },
+                { dag: "Söndag", tid: "Stängt" },
+              ].map(({ dag, tid }) => (
+                <div
+                  key={dag}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "baseline",
+                    padding: "1rem 0",
+                    borderBottom: `1px solid ${C.creamDark}`,
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      fontSize: "1.2rem",
+                      fontWeight: 300,
+                      color: C.charcoal,
+                    }}
+                  >
+                    {dag}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "13px",
+                      letterSpacing: "0.05em",
+                      color: C.warmGray,
+                    }}
+                  >
+                    {tid}
+                  </span>
                 </div>
               ))}
             </div>
@@ -233,14 +401,58 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
           >
-            <p className="section-label info-label">Hitta oss</p>
-            <div className="address-block">
-              <p className="address-line">Slottskogsgatan 42</p>
-              <p className="address-line">414 53 Göteborg</p>
-              <p className="address-subline">Majorna · Nära Mariaplans hållplats</p>
+            <p
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.35em",
+                textTransform: "uppercase",
+                color: C.burgundy,
+                marginBottom: "1.5rem",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              Hitta oss
+            </p>
+            <div style={{ marginBottom: "2.5rem" }}>
+              <p
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.7rem",
+                  fontWeight: 300,
+                  color: C.charcoal,
+                  marginBottom: "0.25rem",
+                }}
+              >
+                Slottskogsgatan 42
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.7rem",
+                  fontWeight: 300,
+                  color: C.charcoal,
+                }}
+              >
+                414 53 Göteborg
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.85rem",
+                  color: C.warmGray,
+                  marginTop: "0.75rem",
+                  fontWeight: 300,
+                }}
+              >
+                Majorna · Nära Mariaplans hållplats
+              </p>
             </div>
-            <div className="contact-links">
-              {contactLinks.map(({ href, label }) => (
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {[
+                { href: "tel:031164950", label: "031 – 16 49 50" },
+                { href: "https://www.instagram.com/gudagott/", label: "@gudagott på Instagram" },
+                { href: "https://www.facebook.com/Gudagott", label: "Gudagott på Facebook" },
+              ].map(({ href, label }) => (
                 <a
                   key={label}
                   href={href}
@@ -257,21 +469,79 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="kontakt" className="site-footer">
-        <h2 className="footer-title">GUDAGOTT</h2>
-        <p className="footer-subtitle">Svenska Delikatesser · Majorna · Göteborg</p>
+      <footer
+        id="kontakt"
+        style={{ backgroundColor: C.charcoal, padding: "5rem 1.5rem", textAlign: "center" }}
+      >
+        <h2
+          style={{
+            fontFamily: "'Bebas Neue', sans-serif",
+            letterSpacing: "0.18em",
+            fontSize: "2rem",
+            color: "white",
+            marginBottom: "0.5rem",
+          }}
+        >
+          GUDAGOTT
+        </h2>
+        <p
+          style={{
+            fontSize: "10px",
+            letterSpacing: "0.4em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.35)",
+            marginBottom: "3rem",
+            fontFamily: "'Inter', sans-serif",
+          }}
+        >
+          Svenska Delikatesser · Majorna · Göteborg
+        </p>
 
-        <nav className="footer-nav">
-          {footerLinks.map(([label, href]) => (
-            <a key={label} href={href} className="footer-nav-link">
+        <nav style={{ display: "flex", justifyContent: "center", gap: "2rem", marginBottom: "3rem" }}>
+          {[
+            ["Sortiment", "#sortiment"],
+            ["Om oss", "#om-oss"],
+            ["Hitta oss", "#hitta-oss"],
+            ["Kontakt", "#kontakt"],
+          ].map(([label, href]) => (
+            <a
+              key={label}
+              href={href}
+              style={{
+                fontSize: "11px",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.45)",
+                textDecoration: "none",
+                transition: "color 0.3s",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
               {label}
             </a>
           ))}
         </nav>
 
-        <div className="footer-divider" />
+        <div
+          style={{
+            width: "4rem",
+            height: "1px",
+            backgroundColor: "rgba(255,255,255,0.15)",
+            margin: "0 auto 2rem",
+          }}
+        />
 
-        <p className="footer-meta">© {new Date().getFullYear()} Gudagott Ekonomisk Förening</p>
+        <p
+          style={{
+            fontSize: "10px",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.2)",
+            fontFamily: "'Inter', sans-serif",
+          }}
+        >
+          © {new Date().getFullYear()} Gudagott Ekonomisk Förening
+        </p>
       </footer>
     </main>
   );
