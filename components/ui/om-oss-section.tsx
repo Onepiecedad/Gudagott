@@ -47,6 +47,7 @@ export function OmOssSection() {
       {/* ── Fotopanel med kremgradient i botten ── */}
       <div style={{ position: "relative" }}>
         <div
+          className="om-oss-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",

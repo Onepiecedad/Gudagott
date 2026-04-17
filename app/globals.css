@@ -505,6 +505,39 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* ── Navbar: visa hamburger, dölj desktop-länkar ── */
+  .nav-desktop-links {
+    display: none !important;
+  }
+
+  .nav-hamburger {
+    display: flex !important;
+  }
+
+  /* ── Om Oss: 3-kolumn → 1-kolumn ── */
+  .om-oss-grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+    padding: 0 1rem !important;
+    gap: 3px !important;
+  }
+
+  /* ── Sortiment: 2-kolumn → 1-kolumn ── */
+  .sortiment-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section {
+    padding: 5.5rem 1.25rem;
+  }
+
+  .hours-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+@media (max-width: 768px) {
   .section {
     padding: 5.5rem 1.25rem;
   }

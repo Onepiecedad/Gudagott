@@ -48,8 +48,7 @@ export default function Home() {
             inset: 0,
             backgroundImage: "url(/interior-real.jpg)",
             backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
+            backgroundPosition: "center 40%",
           }}
         />
         <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(28,23,20,0.48)" }} />
