@@ -282,6 +282,7 @@ export function SortimentSection() {
 
       {/* 2×2 card grid */}
       <div
+        className="sortiment-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",

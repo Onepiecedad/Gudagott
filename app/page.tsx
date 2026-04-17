@@ -101,6 +101,7 @@ export default function Home() {
 
       <section id="hitta-oss" className="snap-section" style={{ backgroundColor: C.offWhite, padding: "4rem 1.5rem" }}>
         <div
+          className="info-grid"
           style={{
             maxWidth: "900px",
             margin: "0 auto",

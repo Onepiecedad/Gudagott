@@ -536,26 +536,32 @@ body {
   }
 }
 
-
+/* ── Extra mobilfixar ── */
 @media (max-width: 768px) {
-  .section {
-    padding: 5.5rem 1.25rem;
+  /* Om Oss: begränsa bildhöjd på smal skärm */
+  .om-oss-grid > div {
+    aspect-ratio: 3 / 2 !important;
+    max-height: 280px;
   }
 
-  .sortiment-grid {
-    grid-template-columns: 1fr;
+  /* Sortiment-kort: begränsa höjden */
+  .sortiment-grid > div {
+    aspect-ratio: 4 / 3 !important;
   }
 
-  .sortiment-card {
-    padding: 2rem 1.5rem;
+  /* Info-grid: en kolumn på mobil */
+  .info-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
   }
 
-  .hours-row {
-    flex-direction: column;
-    align-items: flex-start;
+  /* Hero: visa mer av byggnaden (skylten och markiserna) */
+  #hero > div:first-child {
+    background-position: center 15% !important;
   }
 
-  .parallax-image {
-    background-attachment: scroll;
+  /* Hitta oss: mindre padding */
+  #hitta-oss {
+    padding: 3rem 1.25rem !important;
   }
 }
