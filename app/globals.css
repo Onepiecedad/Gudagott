@@ -573,12 +573,10 @@ body {
     gap: 2rem !important;
   }
 
-  /* Hero: fixa vertikal position på mobil
-     (landscape bild i portrait viewport — cover fyller höjden exakt, Y% har ingen effekt)
-     Lösning: auto 140% gör bilden taller → Y% börjar fungera */
+  /* Hero: samma approach som parallax (cover + center) */
   #hero > div:first-child {
-    background-size: auto 140% !important;
-    background-position: center 35% !important;
+    background-size: cover !important;
+    background-position: center center !important;
   }
 
   /* Hitta oss: mindre padding */
