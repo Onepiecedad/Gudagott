@@ -514,11 +514,29 @@ body {
     display: flex !important;
   }
 
-  /* ── Om Oss: 3-kolumn → 1-kolumn ── */
+  /* ── Om Oss: horisontellt bildspel på mobil ── */
   .om-oss-grid {
-    grid-template-columns: repeat(1, 1fr) !important;
-    padding: 0 1rem !important;
-    gap: 3px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: scroll !important;
+    scroll-snap-type: x mandatory !important;
+    grid-template-columns: unset !important;
+    gap: 6px !important;
+    padding: 0 !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .om-oss-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .om-oss-grid > div {
+    min-width: 90vw !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: center !important;
+    aspect-ratio: 4 / 5 !important;
+    max-height: none !important;
   }
 
   /* ── Sortiment: 2-kolumn → 1-kolumn ── */
