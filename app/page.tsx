@@ -1,7 +1,6 @@
 "use client";
 
 import { ImageScrollHero } from "@/components/ui/image-scroll-hero";
-import SmoothScrollHero from "@/components/ui/smooth-scroll-hero";
 import { OmOssSection } from "@/components/ui/om-oss-section";
 import { SortimentSection } from "@/components/ui/sortiment-section";
 import { Navbar } from "@/components/ui/navbar";
@@ -27,57 +26,7 @@ const fadeUp = {
   }),
 };
 
-const categories = [
-  {
-    title: "Kött & Vilt",
-    description:
-      "Nöt, gris, lamm, fågel och vilt från svenska gårdar. Nearproducerat och noggrant utvald.",
-    items: ["Nötfilé", "Lammracks", "Vildsvin", "Älg & hjort", "Kyckling", "Anka"],
-    accentColor: C.burgundy,
-  },
-  {
-    title: "Charkuterier",
-    description:
-      "Hantverksmässigt producerad chark med rötter i svensk och europeisk tradition.",
-    items: [
-      "Lufttorkad skinka",
-      "Ryggskinka",
-      "Salami & chorizo",
-      "Paté",
-      "Leverpastej",
-      "Rökt oxfilé",
-    ],
-    accentColor: C.charcoal,
-  },
-  {
-    title: "Ost & Mejeri",
-    description:
-      "Långlagrade hårdostar och krämiga dessertostar från svenska och europeiska mejerier.",
-    items: [
-      "Bredsjö Blå",
-      "Präst 36 mån",
-      "Vasterbotten",
-      "Brie & Camembert",
-      "Ägg från frigående höns",
-      "Smör",
-    ],
-    accentColor: C.warmGray,
-  },
-  {
-    title: "Skafferi",
-    description:
-      "Kryddor, marmelader, honung, knäckebröd och delikatesser som kompletterar hantverket.",
-    items: [
-      "Lokalt honung",
-      "Hemkokad sylt",
-      "Knäckebröd",
-      "Kryddor & salt",
-      "Olivolja extra virgin",
-      "Chutneys",
-    ],
-    accentColor: C.burgundyDark,
-  },
-];
+
 
 export default function Home() {
   return (
