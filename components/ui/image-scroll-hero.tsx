@@ -11,16 +11,20 @@ export function ImageScrollHero({
   backgroundSrc = "/exterior-new.jpg",
 }: ImageScrollHeroProps) {
   return (
-    <div id="hero" style={{ position: "relative", height: "100vh" }}>
-      {/* ── Background: exterior building photo ── */}
-      <div
+    <div id="hero" style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
+
+      {/* ── Background: <img> med object-fit — fungerar reliabelt på alla skärmar ── */}
+      <img
+        src={backgroundSrc}
+        alt="Gudagott exteriör"
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `url(${backgroundSrc})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center 60%",
+          display: "block",
         }}
       />
 

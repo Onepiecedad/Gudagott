@@ -573,11 +573,6 @@ body {
     gap: 2rem !important;
   }
 
-  /* Hero: samma approach som parallax (cover + center) */
-  #hero > div:first-child {
-    background-size: cover !important;
-    background-position: center center !important;
-  }
 
   /* Hitta oss: mindre padding */
   #hitta-oss {
