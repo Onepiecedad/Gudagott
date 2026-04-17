@@ -535,7 +535,7 @@ body {
     min-width: 90vw !important;
     flex-shrink: 0 !important;
     scroll-snap-align: center !important;
-    aspect-ratio: 4 / 5 !important;
+    aspect-ratio: 16 / 10 !important;
     max-height: none !important;
   }
 
@@ -575,7 +575,7 @@ body {
 
   /* Hero: visa mer av butiksfasaden */
   #hero > div:first-child {
-    background-position: center 55% !important;
+    background-position: center 72% !important;
   }
 
   /* Hitta oss: mindre padding */
