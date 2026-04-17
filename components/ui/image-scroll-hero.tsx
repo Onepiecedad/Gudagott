@@ -1,178 +1,105 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 interface ImageScrollHeroProps {
   backgroundSrc?: string;
-  foregroundSrc?: string;
-  enableAnimations?: boolean;
-  className?: string;
-  startScale?: number;
 }
 
 export function ImageScrollHero({
-  backgroundSrc = "/exterior-real.jpg",
-  foregroundSrc = "/interior-real.jpg",
-  enableAnimations = true,
-  className = "",
-  startScale = 0.70,
+  backgroundSrc = "/exterior-new.jpg",
 }: ImageScrollHeroProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
-  const [scrollScale, setScrollScale] = useState(startScale);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    if (!enableAnimations || shouldReduceMotion) return;
-
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const containerHeight = containerRef.current.offsetHeight;
-      const windowHeight = window.innerHeight;
-      const scrolled = Math.max(0, -rect.top);
-      const maxScroll = containerHeight - windowHeight;
-      const progress = Math.min(scrolled / maxScroll, 1);
-      setScrollProgress(progress);
-      const newScale = startScale + progress * (1 - startScale);
-      setScrollScale(newScale);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [enableAnimations, shouldReduceMotion, startScale]);
-
-  const shouldAnimate = enableAnimations && !shouldReduceMotion;
-  const textOpacity = Math.max(0, 1 - scrollProgress * 3.2);
-  const blurAmount = 0;
-  const borderRadius = Math.max(0, 12 - scrollProgress * 14);
-
   return (
-    <div className={`relative ${className}`} id="hero">
-      <div ref={containerRef} style={{ height: "250vh", position: "relative" }}>
-        <div style={{ position: "sticky", top: 0, width: "100%", height: "100vh", overflow: "hidden" }}>
+    <div id="hero" style={{ position: "relative", height: "100vh" }}>
+      {/* ── Background: exterior building photo ── */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `url(${backgroundSrc})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center 30%",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
 
-          {/* ── Background: Real Storefront — full image visible ── */}
-          <div
+      {/* ── Top shadow overlay — subtle readability ── */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.22) 0%, transparent 40%)",
+        }}
+      />
+
+      {/* ── Bottom dark vignette — text readability ── */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 20%, transparent 45%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* ── Scroll indicator ── */}
+      <motion.div
+        style={{
+          position: "absolute",
+          bottom: "8rem",
+          left: 0,
+          right: 0,
+          zIndex: 30,
+          textAlign: "center",
+        }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 0.8 }}
+      >
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+
+          {/* Text */}
+          <p
             style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: `url(${backgroundSrc})`,
-              backgroundSize: "contain",
-              backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
-              /* Match the light gray of the building facade */
-              backgroundColor: "#d8d5d0",
-            }}
-          />
-
-          {/* Frosted glass overlay — warm neutral tint */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backdropFilter: blurAmount > 0 ? `blur(${blurAmount}px)` : "none",
-              WebkitBackdropFilter: blurAmount > 0 ? `blur(${blurAmount}px)` : "none",
-              backgroundColor: `rgba(235, 228, 218, ${(1 - scrollProgress) * 0.04})`,
-              transition: "backdrop-filter 0.08s linear",
-            }}
-          />
-
-          {/* Vignette */}
-          <div style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 40%, rgba(0,0,0,0.35) 100%)",
-          }} />
-
-
-          {/* ── Foreground: Interior image scales on scroll ── */}
-          <div style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            paddingTop: "13vh",
-            zIndex: 20,
-          }}>
-            <div
-              style={{
-                transform: shouldAnimate ? `scale(${scrollScale})` : "scale(1)",
-                transformOrigin: "center center",
-                willChange: "transform",
-                transition: "transform 0.05s linear",
-              }}
-            >
-              <div style={{
-                position: "relative",
-                width: "32vw",
-                maxWidth: "500px",
-                aspectRatio: "3 / 4",
-                borderRadius: `${borderRadius}px`,
-                overflow: "hidden",
-                boxShadow: "0 32px 80px rgba(28,23,20,0.45), 0 8px 24px rgba(28,23,20,0.25)",
-              }}>
-                <img
-                  src={foregroundSrc}
-                  alt="Gudagott butiksinredning"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-                <div style={{
-                  position: "absolute",
-                  inset: 0,
-                  backgroundColor: "rgba(122,28,46,0.04)",
-                }} />
-              </div>
-
-            </div>
-          </div>
-
-          {/* ── Scroll indicator: pulsing white orb ── */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "2.5rem",
-              left: 0,
-              right: 0,
-              zIndex: 30,
-              textAlign: "center",
-              opacity: textOpacity,
-              transition: "opacity 0.1s",
+              fontSize: "12px",
+              letterSpacing: "0.45em",
+              textTransform: "uppercase",
+              color: "#ffffff",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 500,
+              textShadow: "0 1px 12px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.5)",
+              animation: "textPulse 3s ease-in-out infinite",
             }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 0.8 }}
-              style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}
-            >
-              {/* Pulsing text */}
-              <p style={{
-                fontSize: "13px",
-                letterSpacing: "0.4em",
-                textTransform: "uppercase",
-                color: "#ffffff",
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 400,
-                animation: "textPulse 2.5s ease-in-out infinite",
-              }}>
-                Scrolla för att utforska
-              </p>
-              {/* Fading line */}
-              <div style={{
-                width: "1px",
-                height: "36px",
-                background: "linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0))",
-                animation: "lineFade 2.5s ease-in-out infinite",
-              }} />
-            </motion.div>
-          </div>
+            Välkommen in
+          </p>
+
+          {/* Chevron arrow */}
+          <svg
+            width="24"
+            height="15"
+            viewBox="0 0 24 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{
+              animation: "arrowPulse 2.2s ease-in-out infinite",
+              filter: "drop-shadow(0 0 8px rgba(0,0,0,0.8)) drop-shadow(0 2px 4px rgba(0,0,0,0.6))",
+            }}
+          >
+            <polyline
+              points="1,1 12,13 23,1"
+              stroke="rgba(255,255,255,0.95)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
 
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

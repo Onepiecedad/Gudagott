@@ -26,11 +26,25 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Scroll snap container ── */
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+/* ── Snap points för varje sektion ── */
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
 body {
   background-color: theme(--color-cream);
   color: theme(--color-charcoal);
   font-family: var(--font-inter);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -398,7 +412,54 @@ body {
   color: rgba(255, 255, 255, 0.2);
 }
 
+/* ── Navbar ── */
+.nav-link {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  font-weight: 400;
+  transition: opacity 0.4s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+/* ── Gallery image filter — unified premium palette ── */
+.gallery-img {
+  filter: brightness(0.97) saturate(0.88);
+  transition: filter 0.5s ease, transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.gallery-img:hover {
+  filter: brightness(1) saturate(1);
+}
+
+/* ── Refined section label ── */
+.section-label {
+  letter-spacing: 0.42em;
+}
+
 @keyframes lineFade {
+
   0%,
   100% {
     opacity: 0.7;
@@ -406,6 +467,17 @@ body {
 
   50% {
     opacity: 0.2;
+  }
+}
+
+@keyframes arrowPulse {
+  0%, 100% {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(5px);
   }
 }
 

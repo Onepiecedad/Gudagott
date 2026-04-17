@@ -1,7 +1,12 @@
 "use client";
 
 import { ImageScrollHero } from "@/components/ui/image-scroll-hero";
+import SmoothScrollHero from "@/components/ui/smooth-scroll-hero";
+import { OmOssSection } from "@/components/ui/om-oss-section";
+import { SortimentSection } from "@/components/ui/sortiment-section";
+import { Navbar } from "@/components/ui/navbar";
 import { motion } from "framer-motion";
+
 
 const C = {
   cream: "#F2EDE5",
@@ -76,211 +81,29 @@ const categories = [
 
 export default function Home() {
   return (
-    <main style={{ backgroundColor: C.cream, minHeight: "100vh" }}>
-      <ImageScrollHero />
+    <main className="snap-container" style={{ backgroundColor: C.cream }}>
+      <Navbar />
+      <div className="snap-section"><ImageScrollHero /></div>
 
-      <section id="om-oss" style={{ backgroundColor: C.offWhite, padding: "8rem 1.5rem" }}>
-        <div style={{ maxWidth: "720px", margin: "0 auto", textAlign: "center" }}>
-          <motion.p
-            style={{
-              fontSize: "11px",
-              letterSpacing: "0.35em",
-              textTransform: "uppercase",
-              color: C.burgundy,
-              marginBottom: "1.5rem",
-              fontFamily: "'Inter', sans-serif",
-            }}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
-            Majorna · Göteborg · Sedan 2009
-          </motion.p>
+      {/* ─── OM OSS ─── */}
+      <div className="snap-section"><OmOssSection /></div>
 
-          <motion.h2
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontStyle: "italic",
-              fontWeight: 300,
-              fontSize: "clamp(2.8rem, 6vw, 5rem)",
-              color: C.charcoal,
-              lineHeight: 1.06,
-              marginBottom: "2.5rem",
-            }}
-            variants={fadeUp}
-            custom={1}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
-            Det gudagoda hantverkets butik
-          </motion.h2>
+      {/* ─── SORTIMENT ─── */}
+      <div className="snap-section"><SortimentSection /></div>
 
-          <motion.div
-            style={{
-              width: "3rem",
-              height: "1px",
-              backgroundColor: C.burgundy,
-              margin: "0 auto 2.5rem",
-            }}
-            variants={fadeUp}
-            custom={2}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          />
 
-          <motion.p
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              color: C.warmGray,
-              fontSize: "1.25rem",
-              lineHeight: 1.75,
-              fontWeight: 300,
-              maxWidth: "520px",
-              margin: "0 auto",
-            }}
-            variants={fadeUp}
-            custom={3}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            En short promenad från Mariaplan hittar du oss — en butik för dig som värdesätter
-            äkta råvaror, snillrikt hantverk och den lilla extra detaljen som gör måltiden
-            minnesvärd.
-          </motion.p>
-        </div>
-      </section>
-
-      <section id="sortiment" style={{ backgroundColor: C.cream, padding: "6rem 1.5rem" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <motion.div
-            style={{ textAlign: "center", marginBottom: "5rem" }}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
-            <p
-              style={{
-                fontSize: "11px",
-                letterSpacing: "0.35em",
-                textTransform: "uppercase",
-                color: C.burgundy,
-                marginBottom: "1rem",
-                fontFamily: "'Inter', sans-serif",
-              }}
-            >
-              Vad vi erbjuder
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontWeight: 300,
-                fontSize: "clamp(2rem, 4vw, 3.2rem)",
-                color: C.charcoal,
-              }}
-            >
-              Sortiment
-            </h2>
-          </motion.div>
-
-          <div className="sortiment-grid">
-            {categories.map((cat, i) => (
-              <motion.div
-                key={cat.title}
-                className="sortiment-card"
-                variants={fadeUp}
-                custom={i * 0.4}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-60px" }}
-              >
-                <div
-                  style={{
-                    width: "4px",
-                    height: "2rem",
-                    backgroundColor: cat.accentColor,
-                    marginBottom: "2rem",
-                  }}
-                />
-                <h3
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "1.6rem",
-                    color: C.charcoal,
-                    marginBottom: "1rem",
-                    fontWeight: 400,
-                  }}
-                >
-                  {cat.title}
-                </h3>
-                <p
-                  style={{
-                    color: C.warmGray,
-                    fontSize: "0.88rem",
-                    lineHeight: 1.7,
-                    marginBottom: "2rem",
-                    fontWeight: 300,
-                    fontFamily: "'Inter', sans-serif",
-                  }}
-                >
-                  {cat.description}
-                </p>
-                <ul
-                  style={{
-                    listStyle: "none",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.6rem",
-                  }}
-                >
-                  {cat.items.map((item) => (
-                    <li
-                      key={item}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.75rem",
-                        fontSize: "13px",
-                        color: C.charcoal,
-                        letterSpacing: "0.03em",
-                        fontFamily: "'Inter', sans-serif",
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: "5px",
-                          height: "5px",
-                          borderRadius: "50%",
-                          backgroundColor: C.burgundy,
-                          flexShrink: 0,
-                        }}
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section style={{ height: "60vh", position: "relative", overflow: "hidden" }}>
+      <section className="snap-section" style={{ height: "55vh", position: "relative", overflow: "hidden" }}>
         <div
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: "url(/interior.png)",
+            backgroundImage: "url(/interior-real.jpg)",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
           }}
         />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(28,23,20,0.55)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(28,23,20,0.48)" }} />
         <div
           style={{
             position: "absolute",
@@ -289,18 +112,19 @@ export default function Home() {
             alignItems: "center",
             justifyContent: "center",
             textAlign: "center",
-            padding: "0 1.5rem",
+            padding: "0 2rem",
           }}
         >
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ textAlign: "center" }}>
             <p
               style={{
                 fontSize: "10px",
                 letterSpacing: "0.45em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.55)",
+                color: "rgba(255,255,255,0.6)",
                 marginBottom: "1.5rem",
                 fontFamily: "'Inter', sans-serif",
+                fontWeight: 400,
               }}
             >
               Välkommen in
@@ -309,12 +133,14 @@ export default function Home() {
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontStyle: "italic",
-                fontWeight: 300,
-                fontSize: "clamp(2.2rem, 5vw, 4rem)",
+                fontWeight: 500,
+                fontSize: "clamp(2.6rem, 5.5vw, 5rem)",
                 color: "white",
-                lineHeight: 1.2,
-                maxWidth: "600px",
+                lineHeight: 1.15,
+                maxWidth: "700px",
                 margin: "0 auto",
+                textAlign: "center",
+                textShadow: "0 2px 20px rgba(0,0,0,0.3)",
               }}
             >
               Gedigen kvalitet.
@@ -325,7 +151,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="hitta-oss" style={{ backgroundColor: C.offWhite, padding: "8rem 1.5rem" }}>
+      <section id="hitta-oss" className="snap-section" style={{ backgroundColor: C.offWhite, padding: "4rem 1.5rem" }}>
         <div
           style={{
             maxWidth: "900px",
