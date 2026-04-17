@@ -555,9 +555,9 @@ body {
     gap: 2rem !important;
   }
 
-  /* Hero: visa mer av byggnaden (skylten och markiserna) */
+  /* Hero: visa mer av butiksfasaden */
   #hero > div:first-child {
-    background-position: center 15% !important;
+    background-position: center 55% !important;
   }
 
   /* Hitta oss: mindre padding */
