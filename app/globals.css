@@ -453,6 +453,14 @@ body {
   filter: brightness(1) saturate(1);
 }
 
+.om-oss-slideshow {
+  box-shadow: 0 24px 70px rgba(28, 23, 20, 0.14);
+}
+
+.om-oss-slide {
+  will-change: opacity, transform;
+}
+
 /* ── Refined section label ── */
 .section-label {
   letter-spacing: 0.42em;
@@ -549,22 +557,6 @@ body {
     letter-spacing: 0.32em !important;
   }
 
-  /* ── Om Oss: horisontellt svep-bildspel ── */
-  .om-oss-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: scroll !important;
-    scroll-snap-type: x mandatory !important;
-    grid-template-columns: unset !important;
-    gap: 6px !important;
-    padding: 0 !important;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
-  }
-  .om-oss-grid::-webkit-scrollbar { display: none; }
-
   .om-oss-ornament {
     padding: 1.2rem 0 1.1rem !important;
   }
@@ -573,18 +565,12 @@ body {
     margin-bottom: 0.35rem;
   }
 
-  /* Fast höjd — undviker conflict med Framer Motion inline aspect-ratio */
-  .om-oss-grid > div {
-    min-width: 82vw !important;
-    width: 82vw !important;
-    height: 260px !important;
-    min-height: unset !important;
-    max-height: 260px !important;
-    aspect-ratio: unset !important;
-    flex-shrink: 0 !important;
-    scroll-snap-align: center !important;
-    overflow: hidden !important;
-    border-radius: 14px !important;
+  .om-oss-slideshow {
+    height: 50svh !important;
+    min-height: 320px !important;
+    max-height: 460px !important;
+    margin: 0 1.25rem !important;
+    border-radius: 18px !important;
   }
 
   .om-oss-copy {
@@ -612,6 +598,10 @@ body {
     font-size: 1.18rem !important;
     line-height: 1.58 !important;
     max-width: 20rem !important;
+  }
+
+  .om-oss-slideshow-dots {
+    bottom: 1rem !important;
   }
 
   /* ── Sortiment: 1-kolumn ── */

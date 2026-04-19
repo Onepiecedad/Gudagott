@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const fadeUp = {
@@ -26,6 +27,16 @@ const PHOTOS = [
 ];
 
 export function OmOssSection() {
+  const [currentPhoto, setCurrentPhoto] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setCurrentPhoto((prev) => (prev + 1) % PHOTOS.length);
+    }, 3200);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
   return (
     <section id="om-oss" className="om-oss-section" style={{ backgroundColor: "#F2EDE5" }}>
 
@@ -45,50 +56,95 @@ export function OmOssSection() {
         <div style={{ width: "3.5rem", height: "1px", backgroundColor: "#7A1C2E", opacity: 0.35 }} />
       </div>
 
-      {/* ── Fotopanel med kremgradient i botten ── */}
+      {/* ── Fotopanel med bildspel och kremgradient i botten ── */}
       <div className="om-oss-media-shell" style={{ position: "relative" }}>
-        <div
-          className="om-oss-grid"
+        <motion.div
+          className="om-oss-slideshow"
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp}
+          viewport={{ once: true, margin: "-40px" }}
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "4px",
-            width: "100%",
-            padding: "0 3rem",
-            boxSizing: "border-box",
+            position: "relative",
+            height: "56vh",
+            minHeight: "420px",
+            maxHeight: "700px",
+            margin: "0 3rem",
+            overflow: "hidden",
+            borderRadius: "24px",
+            backgroundColor: "#1C1714",
           }}
         >
           {PHOTOS.map((photo, i) => (
-            <motion.div
+            <motion.img
               key={photo.src}
-              variants={fadeUp}
-              custom={i * 0.25}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-40px" }}
-              style={{ overflow: "hidden", aspectRatio: "4 / 5" }}
-            >
-              <img
-                className="gallery-img"
-                src={photo.src}
-                alt={photo.alt}
+              className="om-oss-slide gallery-img"
+              src={photo.src}
+              alt={photo.alt}
+              animate={{
+                opacity: currentPhoto === i ? 1 : 0,
+                scale: currentPhoto === i ? 1.03 : 1,
+              }}
+              transition={{
+                opacity: { duration: 1.1, ease: [0.25, 0.1, 0.25, 1] },
+                scale: { duration: 4.2, ease: [0.25, 0.1, 0.25, 1] },
+              }}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: photo.src === "/mitten.jpeg" ? "center 42%" : "center",
+                display: "block",
+              }}
+            />
+          ))}
+
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to top, rgba(12,8,6,0.58) 0%, rgba(12,8,6,0.14) 26%, rgba(12,8,6,0.08) 44%, rgba(12,8,6,0.18) 100%)",
+              pointerEvents: "none",
+              zIndex: 2,
+            }}
+          />
+
+          <div
+            className="om-oss-slideshow-dots"
+            style={{
+              position: "absolute",
+              left: "50%",
+              bottom: "1.5rem",
+              zIndex: 3,
+              display: "flex",
+              gap: "0.45rem",
+              transform: "translateX(-50%)",
+            }}
+          >
+            {PHOTOS.map((photo, i) => (
+              <button
+                key={photo.src}
+                type="button"
+                aria-label={`Visa bild ${i + 1}`}
+                onClick={() => setCurrentPhoto(i)}
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "center",
-                  display: "block",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.transform = "scale(1.05)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.transform = "scale(1)";
+                  width: currentPhoto === i ? "1.8rem" : "0.45rem",
+                  height: "0.45rem",
+                  borderRadius: "999px",
+                  border: "none",
+                  backgroundColor:
+                    currentPhoto === i ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.38)",
+                  transition: "width 0.3s ease, background-color 0.3s ease",
+                  padding: 0,
+                  cursor: "pointer",
                 }}
               />
-            </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Kremgradient fade i botten av fotopanelen */}
         <div
