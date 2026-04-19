@@ -1,10 +1,11 @@
 "use client";
 
+import { useRef } from "react";
 import { ImageScrollHero } from "@/components/ui/image-scroll-hero";
 import { OmOssSection } from "@/components/ui/om-oss-section";
 import { SortimentSection } from "@/components/ui/sortiment-section";
 import { Navbar } from "@/components/ui/navbar";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 
 const C = {
@@ -29,6 +30,13 @@ const fadeUp = {
 
 
 export default function Home() {
+  const interiorRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress: interiorProgress } = useScroll({
+    target: interiorRef,
+    offset: ["start end", "end start"],
+  });
+  const interiorY = useTransform(interiorProgress, [0, 1], ["-8%", "8%"]);
+
   return (
     <main className="snap-container" style={{ backgroundColor: C.cream }}>
       <Navbar />
@@ -41,14 +49,20 @@ export default function Home() {
       <div className="snap-section"><SortimentSection /></div>
 
 
-      <section className="snap-section" style={{ height: "55vh", position: "relative", overflow: "hidden" }}>
-        <div
+      <section
+        ref={interiorRef}
+        className="snap-section interior-section"
+        style={{ height: "55vh", position: "relative", overflow: "hidden" }}
+      >
+        <motion.div
           style={{
             position: "absolute",
-            inset: 0,
+            inset: "-8% 0",
+            y: interiorY,
             backgroundImage: "url(/interior-real.jpg)",
             backgroundSize: "cover",
             backgroundPosition: "center 40%",
+            willChange: "transform",
           }}
         />
         <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(28,23,20,0.48)" }} />
@@ -99,7 +113,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="hitta-oss" className="snap-section" style={{ backgroundColor: C.offWhite, padding: "4rem 1.5rem" }}>
+      <section id="hitta-oss" className="snap-section info-section" style={{ backgroundColor: C.offWhite, padding: "4rem 1.5rem" }}>
         <div
           className="info-grid"
           style={{
@@ -246,6 +260,7 @@ export default function Home() {
 
       <footer
         id="kontakt"
+        className="site-footer"
         style={{ backgroundColor: C.charcoal, padding: "5rem 1.5rem", textAlign: "center" }}
       >
         <h2
@@ -272,7 +287,7 @@ export default function Home() {
           Svenska Delikatesser · Majorna · Göteborg
         </p>
 
-        <nav style={{ display: "flex", justifyContent: "center", gap: "2rem", marginBottom: "3rem" }}>
+        <nav className="footer-nav" style={{ display: "flex", justifyContent: "center", gap: "2rem", marginBottom: "3rem" }}>
           {[
             ["Sortiment", "#sortiment"],
             ["Om oss", "#om-oss"],

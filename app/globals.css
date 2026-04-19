@@ -505,9 +505,26 @@ body {
 }
 
 @media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .snap-container {
+    height: auto;
+    min-height: 100svh;
+    overflow-y: visible;
+    scroll-snap-type: none;
+  }
+
+  .snap-section {
+    scroll-snap-align: unset;
+  }
+
   /* ── Navbar ── */
   .nav-desktop-links { display: none !important; }
   .nav-hamburger { display: flex !important; }
+  .nav-mobile-menu a:last-child { border-bottom: none !important; }
 
   /* ── Hero: iOS Safari fix + visa Gudagott-skylten på mobil ── */
   .hero-section {
@@ -516,7 +533,20 @@ body {
   .hero-bg {
     background-image: url('/exterior-portrait.jpg') !important;
     background-size: cover !important;
-    background-position: center 45% !important;
+    background-position: center 38% !important;
+  }
+
+  .hero-mobile-lockup {
+    display: block !important;
+  }
+
+  .hero-scroll-indicator {
+    bottom: 3.75rem !important;
+  }
+
+  .hero-section p[style*="letter-spacing: 0.45em"] {
+    font-size: 10px !important;
+    letter-spacing: 0.32em !important;
   }
 
   /* ── Om Oss: horisontellt svep-bildspel ── */
@@ -530,25 +560,94 @@ body {
     padding: 0 !important;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
   }
   .om-oss-grid::-webkit-scrollbar { display: none; }
 
+  .om-oss-ornament {
+    padding: 1.2rem 0 1.1rem !important;
+  }
+
+  .om-oss-media-shell {
+    margin-bottom: 0.35rem;
+  }
+
   /* Fast höjd — undviker conflict med Framer Motion inline aspect-ratio */
   .om-oss-grid > div {
-    min-width: 88vw !important;
-    width: 88vw !important;
-    height: 240px !important;
+    min-width: 82vw !important;
+    width: 82vw !important;
+    height: 260px !important;
     min-height: unset !important;
-    max-height: 240px !important;
+    max-height: 260px !important;
     aspect-ratio: unset !important;
     flex-shrink: 0 !important;
     scroll-snap-align: center !important;
     overflow: hidden !important;
+    border-radius: 14px !important;
+  }
+
+  .om-oss-copy {
+    margin-top: 0 !important;
+    padding: 0 1.35rem 3.4rem !important;
+  }
+
+  .om-oss-kicker {
+    font-size: 10px !important;
+    letter-spacing: 0.28em !important;
+    margin-bottom: 0.9rem !important;
+  }
+
+  .om-oss-title {
+    font-size: clamp(2.35rem, 10vw, 3.4rem) !important;
+    line-height: 0.98 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .om-oss-divider {
+    margin-bottom: 1.1rem !important;
+  }
+
+  .om-oss-body {
+    font-size: 1.18rem !important;
+    line-height: 1.58 !important;
+    max-width: 20rem !important;
   }
 
   /* ── Sortiment: 1-kolumn ── */
   .sortiment-grid {
     grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .sortiment-section {
+    padding: 3.5rem 1.25rem 5rem !important;
+  }
+
+  .sortiment-card-touch {
+    aspect-ratio: 4 / 5 !important;
+    border-radius: 16px !important;
+  }
+
+  .sortiment-card-touch img {
+    transform: scale(1.02) !important;
+  }
+
+  .sortiment-card-touch p {
+    max-height: none !important;
+    opacity: 1 !important;
+    margin-bottom: 0.9rem !important;
+    font-size: 12.5px !important;
+    line-height: 1.65 !important;
+  }
+
+  .sortiment-card-touch h3 {
+    font-size: clamp(1.9rem, 8vw, 2.4rem) !important;
+    margin-bottom: 0.7rem !important;
+  }
+
+  .sortiment-card-touch [style*="padding: 1.4rem 1.6rem 1.6rem"] {
+    padding: 1.3rem 1.2rem 1.25rem !important;
   }
 
   /* ── Info-grid: stapla vertikalt ── */
@@ -559,7 +658,39 @@ body {
 
   /* ── Hitta oss: tätare padding ── */
   #hitta-oss {
-    padding: 3rem 1.25rem !important;
+    padding: 3.5rem 1.25rem !important;
+  }
+
+  .interior-section {
+    height: 48svh !important;
+  }
+
+  .interior-section h2 {
+    font-size: clamp(2.2rem, 11vw, 3.2rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  .interior-section p {
+    letter-spacing: 0.28em !important;
+  }
+
+  .info-section .contact-link {
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+  }
+
+  .info-section .contact-link .line {
+    width: 1.35rem;
+  }
+
+  .site-footer {
+    padding: 4rem 1.25rem !important;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    gap: 1rem !important;
+    margin-bottom: 2.2rem !important;
   }
 
   .section { padding: 5.5rem 1.25rem; }

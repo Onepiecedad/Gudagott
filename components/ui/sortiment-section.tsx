@@ -79,6 +79,7 @@ function CategoryCard({
 }) {
   const [current, setCurrent] = useState(0);
   const [hovered, setHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const startCycling = useCallback(() => {
@@ -94,13 +95,23 @@ function CategoryCard({
   }, []);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    const updateInputMode = () => setIsTouchDevice(mediaQuery.matches);
+
+    updateInputMode();
+    mediaQuery.addEventListener("change", updateInputMode);
+
     return () => {
+      mediaQuery.removeEventListener("change", updateInputMode);
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
 
+  const isExpanded = hovered || isTouchDevice;
+
   return (
     <motion.div
+      className="sortiment-card-touch"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
@@ -110,10 +121,12 @@ function CategoryCard({
       }}
       viewport={{ once: true, margin: "-60px" }}
       onMouseEnter={() => {
+        if (isTouchDevice) return;
         setHovered(true);
         startCycling();
       }}
       onMouseLeave={() => {
+        if (isTouchDevice) return;
         setHovered(false);
         stopCycling();
       }}
@@ -142,7 +155,7 @@ function CategoryCard({
             objectPosition: "center",
             opacity: current === i ? 1 : 0,
             transition: "opacity 0.7s ease",
-            transform: hovered ? "scale(1.04)" : "scale(1)",
+            transform: isExpanded ? "scale(1.04)" : "scale(1)",
             transitionProperty: "opacity, transform",
             transitionDuration: "0.7s, 0.9s",
             transitionTimingFunction: "ease, cubic-bezier(0.25, 0.1, 0.25, 1)",
@@ -157,7 +170,7 @@ function CategoryCard({
           inset: 0,
           background: "linear-gradient(to top, rgba(10,6,4,0.85) 0%, rgba(10,6,4,0.3) 45%, transparent 75%)",
           transition: "opacity 0.5s ease",
-          opacity: hovered ? 1 : 0.75,
+          opacity: isExpanded ? 1 : 0.75,
           zIndex: 2,
           pointerEvents: "none",
         }}
@@ -186,7 +199,7 @@ function CategoryCard({
             marginBottom: "0.5rem",
             textShadow: "0 1px 8px rgba(0,0,0,0.6)",
             transition: "transform 0.4s ease",
-            transform: hovered ? "translateY(-4px)" : "translateY(0)",
+            transform: isExpanded ? "translateY(-4px)" : "translateY(0)",
           }}
         >
           {cat.title}
@@ -201,11 +214,11 @@ function CategoryCard({
             color: "rgba(255,255,255,0.92)",
             lineHeight: 1.6,
             letterSpacing: "0.02em",
-            maxHeight: hovered ? "4rem" : "0",
-            opacity: hovered ? 1 : 0,
+            maxHeight: isExpanded ? "4.6rem" : "0",
+            opacity: isExpanded ? 1 : 0,
             overflow: "hidden",
             transition: "opacity 0.4s ease, max-height 0.4s ease",
-            marginBottom: hovered ? "1rem" : "0",
+            marginBottom: isExpanded ? "1rem" : "0",
           }}
         >
           {cat.description}
@@ -217,7 +230,7 @@ function CategoryCard({
             display: "flex",
             gap: "5px",
             alignItems: "center",
-            opacity: hovered ? 1 : 0.35,
+            opacity: isExpanded ? 1 : 0.35,
             transition: "opacity 0.4s ease",
           }}
         >
@@ -245,6 +258,7 @@ export function SortimentSection() {
   return (
     <section
       id="sortiment"
+      className="sortiment-section"
       style={{ backgroundColor: "#F2EDE5", padding: "4rem 2rem 8rem" }}
     >
       {/* Header */}

@@ -27,10 +27,11 @@ const PHOTOS = [
 
 export function OmOssSection() {
   return (
-    <section id="om-oss" style={{ backgroundColor: "#F2EDE5" }}>
+    <section id="om-oss" className="om-oss-section" style={{ backgroundColor: "#F2EDE5" }}>
 
       {/* ── Ornament ── */}
       <div
+        className="om-oss-ornament"
         style={{
           display: "flex",
           alignItems: "center",
@@ -45,7 +46,7 @@ export function OmOssSection() {
       </div>
 
       {/* ── Fotopanel med kremgradient i botten ── */}
-      <div style={{ position: "relative" }}>
+      <div className="om-oss-media-shell" style={{ position: "relative" }}>
         <div
           className="om-oss-grid"
           style={{
@@ -106,6 +107,7 @@ export function OmOssSection() {
 
       {/* ── Text glider upp ur foto-faden ── */}
       <div
+        className="om-oss-copy"
         style={{
           marginTop: "-0.5rem",
           position: "relative",
@@ -115,6 +117,7 @@ export function OmOssSection() {
         }}
       >
         <motion.p
+          className="om-oss-kicker"
           style={{
             fontSize: "11px",
             letterSpacing: "0.35em",
@@ -132,6 +135,7 @@ export function OmOssSection() {
         </motion.p>
 
         <motion.h2
+          className="om-oss-title"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontStyle: "italic",
@@ -152,6 +156,7 @@ export function OmOssSection() {
         </motion.h2>
 
         <motion.div
+          className="om-oss-divider"
           style={{
             width: "3rem",
             height: "1px",
@@ -166,6 +171,7 @@ export function OmOssSection() {
         />
 
         <motion.p
+          className="om-oss-body"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "#4A3F38",

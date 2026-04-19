@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface ImageScrollHeroProps {
   backgroundSrc?: string;
@@ -10,18 +10,35 @@ interface ImageScrollHeroProps {
 export function ImageScrollHero({
   backgroundSrc = "/exterior-new.jpg",
 }: ImageScrollHeroProps) {
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+
   return (
-    <div id="hero" className="hero-section" style={{ position: "relative", height: "100vh" }}>
+    <div
+      id="hero"
+      ref={heroRef}
+      className="hero-section"
+      style={{ position: "relative", height: "100vh" }}
+    >
 
       {/* ── Background: background-image div — fungerar reliabelt cross-browser ── */}
-      <div className="hero-bg" style={{
-        position: "absolute",
-        inset: 0,
-        backgroundImage: `url(${backgroundSrc})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center 60%",
-        backgroundRepeat: "no-repeat",
-      }} />
+      <motion.div
+        className="hero-bg"
+        style={{
+          position: "absolute",
+          inset: "-6% 0",
+          y: backgroundY,
+          backgroundImage: `url(${backgroundSrc})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center 60%",
+          backgroundRepeat: "no-repeat",
+          willChange: "transform",
+        }}
+      />
 
       {/* ── Top shadow overlay ── */}
       <div style={{
@@ -38,8 +55,52 @@ export function ImageScrollHero({
         pointerEvents: "none",
       }} />
 
+      <motion.div
+        className="hero-mobile-lockup"
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.55, duration: 0.9 }}
+        style={{
+          position: "absolute",
+          left: "1.25rem",
+          right: "1.25rem",
+          bottom: "10.75rem",
+          zIndex: 25,
+          display: "none",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "10px",
+            letterSpacing: "0.34em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.76)",
+            marginBottom: "0.9rem",
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 500,
+          }}
+        >
+          Svenska delikatesser
+        </p>
+        <h1
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: "italic",
+            fontWeight: 500,
+            fontSize: "clamp(2.7rem, 12vw, 4.4rem)",
+            lineHeight: 0.92,
+            color: "#fff",
+            maxWidth: "8ch",
+            textShadow: "0 4px 24px rgba(0,0,0,0.32)",
+          }}
+        >
+          Gudagott
+        </h1>
+      </motion.div>
+
       {/* ── Scroll indicator ── */}
       <motion.div
+        className="hero-scroll-indicator"
         style={{
           position: "absolute",
           bottom: "8rem",
