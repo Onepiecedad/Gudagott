@@ -509,8 +509,12 @@ body {
   .nav-desktop-links { display: none !important; }
   .nav-hamburger { display: flex !important; }
 
-  /* ── Hero: bakgrundsbild centrerad ── */
+  /* ── Hero: iOS Safari 100vh fix + full cover ── */
+  .hero-section {
+    height: 100svh !important; /* small viewport height — iOS safe */
+  }
   .hero-bg {
+    background-size: cover !important;
     background-position: center center !important;
   }
 
