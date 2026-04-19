@@ -505,16 +505,16 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* ── Navbar: visa hamburger, dölj desktop-länkar ── */
-  .nav-desktop-links {
-    display: none !important;
+  /* ── Navbar ── */
+  .nav-desktop-links { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+
+  /* ── Hero: bakgrundsbild centrerad ── */
+  .hero-bg {
+    background-position: center center !important;
   }
 
-  .nav-hamburger {
-    display: flex !important;
-  }
-
-  /* ── Om Oss: horisontellt bildspel på mobil ── */
+  /* ── Om Oss: horisontellt svep-bildspel ── */
   .om-oss-grid {
     display: flex !important;
     flex-direction: row !important;
@@ -526,56 +526,37 @@ body {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
+  .om-oss-grid::-webkit-scrollbar { display: none; }
 
-  .om-oss-grid::-webkit-scrollbar {
-    display: none;
-  }
-
+  /* Fast höjd — undviker conflict med Framer Motion inline aspect-ratio */
   .om-oss-grid > div {
-    min-width: 90vw !important;
+    min-width: 88vw !important;
+    width: 88vw !important;
+    height: 240px !important;
+    min-height: unset !important;
+    max-height: 240px !important;
+    aspect-ratio: unset !important;
     flex-shrink: 0 !important;
     scroll-snap-align: center !important;
-    aspect-ratio: 16 / 10 !important;
-    max-height: none !important;
+    overflow: hidden !important;
   }
 
-  /* ── Sortiment: 2-kolumn → 1-kolumn ── */
+  /* ── Sortiment: 1-kolumn ── */
   .sortiment-grid {
     grid-template-columns: 1fr !important;
   }
 
-  .section {
-    padding: 5.5rem 1.25rem;
-  }
-
-  .hours-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-/* ── Extra mobilfixar ── */
-@media (max-width: 768px) {
-  /* Om Oss: begränsa bildhöjd på smal skärm */
-  .om-oss-grid > div {
-    aspect-ratio: 3 / 2 !important;
-    max-height: 280px;
-  }
-
-  /* Sortiment-kort: begränsa höjden */
-  .sortiment-grid > div {
-    aspect-ratio: 4 / 3 !important;
-  }
-
-  /* Info-grid: en kolumn på mobil */
+  /* ── Info-grid: stapla vertikalt ── */
   .info-grid {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
   }
 
-
-  /* Hitta oss: mindre padding */
+  /* ── Hitta oss: tätare padding ── */
   #hitta-oss {
     padding: 3rem 1.25rem !important;
   }
+
+  .section { padding: 5.5rem 1.25rem; }
+  .hours-row { flex-direction: column; align-items: flex-start; }
 }
