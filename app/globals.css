@@ -514,9 +514,9 @@ body {
     height: 100svh !important;
   }
   .hero-bg {
-    background-image: url('/exterior-new.jpg') !important;
+    background-image: url('/exterior-mobile.jpg') !important;
     background-size: cover !important;
-    background-position: 45% center !important;
+    background-position: center bottom !important;
   }
 
   /* ── Om Oss: horisontellt svep-bildspel ── */
