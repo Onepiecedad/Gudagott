@@ -454,7 +454,7 @@ body {
 }
 
 .om-oss-slideshow {
-  box-shadow: 0 24px 70px rgba(28, 23, 20, 0.14);
+  width: 100%;
 }
 
 .om-oss-slide {
@@ -569,8 +569,7 @@ body {
     height: 50svh !important;
     min-height: 320px !important;
     max-height: 460px !important;
-    margin: 0 1.25rem !important;
-    border-radius: 18px !important;
+    width: 100% !important;
   }
 
   .om-oss-copy {

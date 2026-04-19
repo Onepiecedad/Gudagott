@@ -69,9 +69,7 @@ export function OmOssSection() {
             height: "56vh",
             minHeight: "420px",
             maxHeight: "700px",
-            margin: "0 3rem",
             overflow: "hidden",
-            borderRadius: "24px",
             backgroundColor: "#1C1714",
           }}
         >
