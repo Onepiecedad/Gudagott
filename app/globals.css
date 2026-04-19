@@ -509,14 +509,14 @@ body {
   .nav-desktop-links { display: none !important; }
   .nav-hamburger { display: flex !important; }
 
-  /* ── Hero: iOS Safari fix + portrait-beskuren bild på mobil ── */
+  /* ── Hero: iOS Safari fix + visa Gudagott-skylten på mobil ── */
   .hero-section {
     height: 100svh !important;
   }
   .hero-bg {
-    background-image: url('/exterior-mobile.jpg') !important;
+    background-image: url('/exterior-new.jpg') !important;
     background-size: cover !important;
-    background-position: center 55% !important;
+    background-position: 10% center !important; /* visa vänster del med Gudagott-skylten */
   }
 
   /* ── Om Oss: horisontellt svep-bildspel ── */
