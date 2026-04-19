@@ -514,9 +514,9 @@ body {
     height: 100svh !important;
   }
   .hero-bg {
-    background-image: url('/exterior-new.jpg') !important;
+    background-image: url('/exterior-mobile.jpg') !important;
     background-size: cover !important;
-    background-position: 48% center !important; /* full skylt synlig */
+    background-position: center 65% !important; /* skylt + markiser i fokus */
   }
 
   /* ── Om Oss: horisontellt svep-bildspel ── */
