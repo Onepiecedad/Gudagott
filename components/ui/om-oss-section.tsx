@@ -21,9 +21,9 @@ const fadeIn = {
 };
 
 const PHOTOS = [
-  { src: "/gallery-2.png", alt: "Köttdisken" },
-  { src: "/mitten.jpeg", alt: "Gudagott skylten" },
-  { src: "/gallery-3.jpeg", alt: "Ostdisken" },
+  { src: "/gallery-2.png", alt: "Köttdisken", position: "center 58%" },
+  { src: "/mitten.jpeg", alt: "Gudagott skylten", position: "center 40%" },
+  { src: "/gallery-3.jpeg", alt: "Ostdisken", position: "center 52%" },
 ];
 
 export function OmOssSection() {
@@ -67,8 +67,8 @@ export function OmOssSection() {
           style={{
             position: "relative",
             height: "56vh",
-            minHeight: "420px",
-            maxHeight: "700px",
+            minHeight: "320px",
+            maxHeight: "520px",
             overflow: "hidden",
             backgroundColor: "#1C1714",
           }}
@@ -93,7 +93,7 @@ export function OmOssSection() {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                objectPosition: photo.src === "/mitten.jpeg" ? "center 42%" : "center",
+                objectPosition: photo.position,
                 display: "block",
               }}
             />
