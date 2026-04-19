@@ -509,13 +509,14 @@ body {
   .nav-desktop-links { display: none !important; }
   .nav-hamburger { display: flex !important; }
 
-  /* ── Hero: iOS Safari 100vh fix + full cover ── */
+  /* ── Hero: iOS Safari fix + portrait-beskuren bild på mobil ── */
   .hero-section {
-    height: 100svh !important; /* small viewport height — iOS safe */
+    height: 100svh !important;
   }
   .hero-bg {
+    background-image: url('/exterior-mobile.jpg') !important;
     background-size: cover !important;
-    background-position: center center !important;
+    background-position: center 55% !important;
   }
 
   /* ── Om Oss: horisontellt svep-bildspel ── */

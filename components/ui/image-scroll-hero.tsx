@@ -19,7 +19,7 @@ export function ImageScrollHero({
         inset: 0,
         backgroundImage: `url(${backgroundSrc})`,
         backgroundSize: "cover",
-        backgroundPosition: "center center",
+        backgroundPosition: "center 60%",
         backgroundRepeat: "no-repeat",
       }} />
 
