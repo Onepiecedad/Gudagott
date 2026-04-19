@@ -516,7 +516,7 @@ body {
   .hero-bg {
     background-image: url('/exterior-new.jpg') !important;
     background-size: cover !important;
-    background-position: 40% center !important; /* Gudagott-skylten centrerad */
+    background-position: 48% center !important; /* full skylt synlig */
   }
 
   /* ── Om Oss: horisontellt svep-bildspel ── */
