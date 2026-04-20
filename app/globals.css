@@ -578,15 +578,6 @@ body {
   .hero-section {
     height: 100svh !important;
   }
-  .hero-bg {
-    background-image: url('/exterior-portrait.jpg') !important;
-    background-size: cover !important;
-    background-position: center 38% !important;
-  }
-
-  .hero-mobile-lockup {
-    display: block !important;
-  }
 
   .hero-scroll-indicator {
     bottom: 3.75rem !important;
