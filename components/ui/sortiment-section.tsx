@@ -18,7 +18,7 @@ const CATEGORIES = [
   {
     title: "Kött & Vilt",
     description:
-      "Nöt, gris, lamm, fågel och vilt från svenska gårdar. Nearproducerat och noggrant utvalt.",
+      "Nöt, gris, lamm, fågel och vilt från svenska gårdar. Närproducerat och noggrant utvalt.",
     images: [
       imgSrc("kött och vilt", "huvudbild_kott.JPG"),
       imgSrc("kött och vilt", "IMG_1108.JPG"),
