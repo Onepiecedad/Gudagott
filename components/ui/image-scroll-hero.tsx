@@ -56,11 +56,11 @@ export function ImageScrollHero({
         <motion.div
           style={{
             position: "absolute",
-            inset: "-20% 0",
+            inset: "-8% 0",
             y: backgroundY,
             backgroundImage: `url(${backgroundSrc})`,
             backgroundSize: "cover",
-            backgroundPosition: "center 60%",
+            backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
             willChange: "transform",
           }}
