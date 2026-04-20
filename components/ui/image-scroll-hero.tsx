@@ -41,19 +41,27 @@ export function ImageScrollHero({
       className="hero-section"
       style={{ position: "relative", height: "100vh", overflow: "hidden" }}
     >
+      {/* ── Parallax wrapper ── */}
       <motion.div
-        className="hero-bg"
         style={{
           position: "absolute",
           inset: "-6% 0",
           y: backgroundY,
-          backgroundImage: `url(${activeSrc})`,
-          backgroundSize: "cover",
-          backgroundPosition: activePosition,
-          backgroundRepeat: "no-repeat",
           willChange: "transform",
         }}
-      />
+      >
+        {/* ── Bakgrundsbild: hanteras av React (inte FM) för korrekt uppdatering ── */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `url(${activeSrc})`,
+            backgroundSize: "cover",
+            backgroundPosition: activePosition,
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+      </motion.div>
 
       {/* ── Top shadow overlay ── */}
       <div style={{
