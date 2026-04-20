@@ -34,7 +34,7 @@ export function OmOssSection() {
     target: gridRef,
     offset: ["start end", "end start"],
   });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], ["-18%", "18%"]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -185,8 +185,7 @@ export function OmOssSection() {
           <motion.div
             style={{
               position: "absolute",
-              inset: "-8% 0",
-              y: parallaxY,
+              inset: 0,
               willChange: "transform",
             }}
           >
