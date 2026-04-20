@@ -26,14 +26,14 @@ export function ImageScrollHero({
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-18%", "18%"]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
 
   return (
     <div
       id="hero"
       ref={heroRef}
       className="hero-section"
-      style={{ position: "relative", height: "100vh", overflow: "hidden", backgroundColor: "#000" }}
+      style={{ position: "relative", height: "100vh", overflow: "hidden" }}
     >
       {/* ── MOBIL: <img> hanteras av webbläsaren direkt, portrait-format ── */}
       {isMobile && (
@@ -56,13 +56,12 @@ export function ImageScrollHero({
         <motion.div
           style={{
             position: "absolute",
-            inset: "-4% 0",
+            inset: "-8% 0",
             y: backgroundY,
             backgroundImage: `url(${backgroundSrc})`,
-            backgroundSize: "100% auto",
-            backgroundPosition: "center center",
+            backgroundSize: "cover",
+            backgroundPosition: "center 45%",
             backgroundRepeat: "no-repeat",
-            backgroundColor: "#000",
             willChange: "transform",
           }}
         />
