@@ -5,10 +5,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 interface ImageScrollHeroProps {
   backgroundSrc?: string;
+  mobileSrc?: string;
 }
 
 export function ImageScrollHero({
   backgroundSrc = "/exterior-new.jpg",
+  mobileSrc = "/exterior-mobile-hero.png",
 }: ImageScrollHeroProps) {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
@@ -22,12 +24,12 @@ export function ImageScrollHero({
       id="hero"
       ref={heroRef}
       className="hero-section"
-      style={{ position: "relative", height: "100vh" }}
+      style={{ position: "relative", height: "100vh", overflow: "hidden" }}
     >
 
-      {/* ── Background: background-image div — fungerar reliabelt cross-browser ── */}
+      {/* ── Desktop background ── */}
       <motion.div
-        className="hero-bg"
+        className="hero-bg hero-bg-desktop"
         style={{
           position: "absolute",
           inset: "-6% 0",
@@ -35,6 +37,21 @@ export function ImageScrollHero({
           backgroundImage: `url(${backgroundSrc})`,
           backgroundSize: "cover",
           backgroundPosition: "center 60%",
+          backgroundRepeat: "no-repeat",
+          willChange: "transform",
+        }}
+      />
+
+      {/* ── Mobil background (portrait) ── */}
+      <motion.div
+        className="hero-bg hero-bg-mobile"
+        style={{
+          position: "absolute",
+          inset: "-6% 0",
+          y: backgroundY,
+          backgroundImage: `url(${mobileSrc})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center 55%",
           backgroundRepeat: "no-repeat",
           willChange: "transform",
         }}
@@ -84,11 +101,11 @@ export function ImageScrollHero({
         </p>
         <h1
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontStyle: "italic",
-            fontWeight: 500,
-            fontSize: "clamp(2.7rem, 12vw, 4.4rem)",
+            fontFamily: "'Bebas Neue', sans-serif",
+            fontWeight: 400,
+            fontSize: "clamp(3.5rem, 14vw, 6rem)",
             lineHeight: 0.92,
+            letterSpacing: "0.12em",
             color: "#fff",
             maxWidth: "8ch",
             textShadow: "0 4px 24px rgba(0,0,0,0.32)",

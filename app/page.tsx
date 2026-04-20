@@ -63,9 +63,10 @@ export default function Home() {
             backgroundSize: "cover",
             backgroundPosition: "center 40%",
             willChange: "transform",
+            filter: "brightness(0.97) saturate(0.88)",
           }}
         />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(28,23,20,0.48)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(28,23,20,0.28)" }} />
         <div
           style={{
             position: "absolute",
@@ -80,25 +81,25 @@ export default function Home() {
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ textAlign: "center" }}>
             <p
               style={{
-                fontSize: "10px",
+                fontSize: "12px",
                 letterSpacing: "0.45em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.6)",
+                color: "rgba(255,255,255,0.88)",
                 marginBottom: "1.5rem",
                 fontFamily: "'Inter', sans-serif",
-                fontWeight: 400,
+                fontWeight: 500,
               }}
             >
               Välkommen in
             </p>
             <h2
               style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontStyle: "italic",
-                fontWeight: 500,
-                fontSize: "clamp(2.6rem, 5.5vw, 5rem)",
+                fontFamily: "'Bebas Neue', sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(2.8rem, 6vw, 5.5rem)",
+                letterSpacing: "0.08em",
                 color: "white",
-                lineHeight: 1.15,
+                lineHeight: 1.1,
                 maxWidth: "700px",
                 margin: "0 auto",
                 textAlign: "center",
@@ -160,7 +161,7 @@ export default function Home() {
                 >
                   <span
                     style={{
-                      fontFamily: "'Cormorant Garamond', serif",
+                  fontFamily: "'Courier Prime', monospace",
                       fontSize: "1.2rem",
                       fontWeight: 300,
                       color: C.charcoal,
@@ -205,9 +206,9 @@ export default function Home() {
             <div style={{ marginBottom: "2.5rem" }}>
               <p
                 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "1.7rem",
-                  fontWeight: 300,
+                  fontFamily: "'Courier Prime', monospace",
+                  fontSize: "1.4rem",
+                  fontWeight: 400,
                   color: C.charcoal,
                   marginBottom: "0.25rem",
                 }}
@@ -216,9 +217,9 @@ export default function Home() {
               </p>
               <p
                 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: "1.7rem",
-                  fontWeight: 300,
+                  fontFamily: "'Courier Prime', monospace",
+                  fontSize: "1.4rem",
+                  fontWeight: 400,
                   color: C.charcoal,
                 }}
               >

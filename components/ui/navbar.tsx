@@ -105,11 +105,10 @@ export function Navbar() {
           <a
             href="#"
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: isMobile ? "0.92rem" : "1rem",
-              letterSpacing: isMobile ? "0.28em" : "0.45em",
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: isMobile ? "1.1rem" : "1.2rem",
+              letterSpacing: isMobile ? "0.22em" : "0.3em",
               textTransform: "uppercase",
-              fontStyle: "italic",
               color: "#1C1714",
               textDecoration: "none",
               fontWeight: 400,

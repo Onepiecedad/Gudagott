@@ -83,10 +83,10 @@ function CategoryCard({
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const startCycling = useCallback(() => {
-    setCurrent(1 % cat.images.length);
+    if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % cat.images.length);
-    }, 1400);
+    }, 2200);
   }, [cat.images.length]);
 
   const stopCycling = useCallback(() => {
@@ -94,6 +94,7 @@ function CategoryCard({
     setCurrent(0);
   }, []);
 
+  // Detektera touch-enhet
   useEffect(() => {
     const mediaQuery = window.matchMedia("(hover: none), (pointer: coarse)");
     const updateInputMode = () => setIsTouchDevice(mediaQuery.matches);
@@ -106,6 +107,14 @@ function CategoryCard({
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
+
+  // Auto-starta bildspel på touch-enheter
+  useEffect(() => {
+    if (isTouchDevice) {
+      startCycling();
+      return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+    }
+  }, [isTouchDevice, startCycling]);
 
   const isExpanded = hovered || isTouchDevice;
 
@@ -190,12 +199,11 @@ function CategoryCard({
         {/* Category title */}
         <h3
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontStyle: "italic",
-            fontWeight: 600,
-            fontSize: "clamp(1.5rem, 2.5vw, 2.1rem)",
+            fontFamily: "'Bebas Neue', sans-serif",
+            fontWeight: 400,
+            fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)",
+            letterSpacing: "0.08em",
             color: "white",
-            letterSpacing: "0.01em",
             marginBottom: "0.5rem",
             textShadow: "0 1px 8px rgba(0,0,0,0.6)",
             transition: "transform 0.4s ease",
@@ -283,10 +291,10 @@ export function SortimentSection() {
         </p>
         <h2
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontStyle: "italic",
-            fontWeight: 500,
-            fontSize: "clamp(2rem, 4vw, 3.2rem)",
+            fontFamily: "'Bebas Neue', sans-serif",
+            fontWeight: 400,
+            fontSize: "clamp(2.4rem, 5vw, 4rem)",
+            letterSpacing: "0.12em",
             color: "#1C1714",
           }}
         >

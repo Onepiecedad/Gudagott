@@ -26,28 +26,25 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ── Scroll snap container ── */
+/* ── Scroll snap borttagen — normal scroll ── */
 .snap-container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
 }
 
-/* ── Snap points för varje sektion ── */
 .snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
+  /* ingen snap */
 }
 
 body {
   background-color: theme(--color-cream);
   color: theme(--color-charcoal);
-  font-family: var(--font-inter);
-  font-weight: 400;
-  letter-spacing: 0.01em;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  background-color: #F2EDE5;
+  color: #1C1714;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
@@ -453,13 +450,73 @@ body {
   filter: brightness(1) saturate(1);
 }
 
+/* ── Om Oss: 3 bilder jämte varandra (desktop) ── */
+.om-oss-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 65vh;
+  min-height: 400px;
+  max-height: 680px;
+  overflow: hidden;
+  gap: 6px;
+  padding: 0 1.5rem 1.5rem;
+}
+
+.om-oss-grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Hover overlay */
+.om-oss-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 23, 20, 0);
+  transition: background 0.6s ease;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 6px;
+}
+
+.om-oss-grid-item:hover .om-oss-grid-overlay {
+  background: rgba(28, 23, 20, 0.18);
+}
+
+/* Brightness på hover */
+.om-oss-grid-img {
+  transition: filter 0.6s ease;
+}
+
+.om-oss-grid-item:hover .om-oss-grid-img {
+  filter: brightness(1.06) saturate(1.08);
+}
+
+/* ── Hero: desktop/mobil bildväxling ── */
+.hero-bg-mobile { display: none; }
+.hero-bg-desktop { display: block; }
+
+@media (max-width: 768px) {
+  .hero-bg-desktop { display: none; }
+  .hero-bg-mobile  { display: block; }
+}
+
+/* Mobil-slideshow: dold på desktop */
+.om-oss-mobile-show {
+  display: none;
+}
 .om-oss-slideshow {
+  position: relative;
   width: 100%;
-  height: clamp(20rem, 42vw, 30rem);
+  height: 60svh;
+  min-height: 320px;
+  overflow: hidden;
+  background-color: #1C1714;
 }
 
 .om-oss-slide {
-  will-change: opacity, transform;
+  will-change: opacity;
 }
 
 /* ── Refined section label ── */
@@ -519,16 +576,6 @@ body {
     overflow-x: hidden;
   }
 
-  .snap-container {
-    height: auto;
-    min-height: 100svh;
-    overflow-y: visible;
-    scroll-snap-type: none;
-  }
-
-  .snap-section {
-    scroll-snap-align: unset;
-  }
 
   /* ── Navbar ── */
   .nav-desktop-links { display: none !important; }
@@ -562,42 +609,17 @@ body {
     padding: 1.2rem 0 1.1rem !important;
   }
 
-  .om-oss-media-shell {
-    margin-bottom: 0.35rem;
+  /* ── Om Oss: mobil ── */
+  .om-oss-grid {
+    display: none !important;
   }
 
-  .om-oss-slideshow {
-    height: 38svh !important;
-    min-height: 240px !important;
-    max-height: 320px !important;
-    width: 100% !important;
+  .om-oss-mobile-show {
+    display: block !important;
   }
 
-  .om-oss-copy {
-    margin-top: 0 !important;
-    padding: 0 1.35rem 3.4rem !important;
-  }
-
-  .om-oss-kicker {
-    font-size: 10px !important;
-    letter-spacing: 0.28em !important;
-    margin-bottom: 0.9rem !important;
-  }
-
-  .om-oss-title {
-    font-size: clamp(2.35rem, 10vw, 3.4rem) !important;
-    line-height: 0.98 !important;
-    margin-bottom: 1rem !important;
-  }
-
-  .om-oss-divider {
-    margin-bottom: 1.1rem !important;
-  }
-
-  .om-oss-body {
-    font-size: 1.18rem !important;
-    line-height: 1.58 !important;
-    max-width: 20rem !important;
+  .om-oss-ornament {
+    padding: 1.2rem 0 1.1rem !important;
   }
 
   .om-oss-slideshow-dots {
