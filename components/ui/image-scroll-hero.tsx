@@ -26,7 +26,7 @@ export function ImageScrollHero({
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-18%", "18%"]);
 
   return (
     <div
@@ -56,7 +56,7 @@ export function ImageScrollHero({
         <motion.div
           style={{
             position: "absolute",
-            inset: "-10% 0",
+            inset: "-20% 0",
             y: backgroundY,
             backgroundImage: `url(${backgroundSrc})`,
             backgroundSize: "cover",
