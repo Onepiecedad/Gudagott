@@ -33,7 +33,7 @@ export function ImageScrollHero({
       id="hero"
       ref={heroRef}
       className="hero-section"
-      style={{ position: "relative", height: "100vh", overflow: "hidden" }}
+      style={{ position: "relative", height: "100vh", overflow: "hidden", backgroundColor: "#000" }}
     >
       {/* ── MOBIL: <img> hanteras av webbläsaren direkt, portrait-format ── */}
       {isMobile && (
@@ -56,12 +56,13 @@ export function ImageScrollHero({
         <motion.div
           style={{
             position: "absolute",
-            inset: "-8% 0",
+            inset: "-4% 0",
             y: backgroundY,
             backgroundImage: `url(${backgroundSrc})`,
-            backgroundSize: "cover",
+            backgroundSize: "100% auto",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
+            backgroundColor: "#000",
             willChange: "transform",
           }}
         />
