@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 interface ImageScrollHeroProps {
@@ -13,11 +13,23 @@ export function ImageScrollHero({
   mobileSrc = "/exterior-mobile-hero.png",
 }: ImageScrollHeroProps) {
   const heroRef = useRef<HTMLDivElement | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+
+  const activeSrc = isMobile ? mobileSrc : backgroundSrc;
+  const activePosition = isMobile ? "center 55%" : "center 60%";
 
   return (
     <div
@@ -26,32 +38,15 @@ export function ImageScrollHero({
       className="hero-section"
       style={{ position: "relative", height: "100vh", overflow: "hidden" }}
     >
-
-      {/* ── Desktop background ── */}
       <motion.div
-        className="hero-bg hero-bg-desktop"
+        className="hero-bg"
         style={{
           position: "absolute",
           inset: "-6% 0",
           y: backgroundY,
-          backgroundImage: `url(${backgroundSrc})`,
+          backgroundImage: `url(${activeSrc})`,
           backgroundSize: "cover",
-          backgroundPosition: "center 60%",
-          backgroundRepeat: "no-repeat",
-          willChange: "transform",
-        }}
-      />
-
-      {/* ── Mobil background (portrait) ── */}
-      <motion.div
-        className="hero-bg hero-bg-mobile"
-        style={{
-          position: "absolute",
-          inset: "-6% 0",
-          y: backgroundY,
-          backgroundImage: `url(${mobileSrc})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center 55%",
+          backgroundPosition: activePosition,
           backgroundRepeat: "no-repeat",
           willChange: "transform",
         }}
