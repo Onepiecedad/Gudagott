@@ -493,13 +493,6 @@ body {
   filter: brightness(1.06) saturate(1.08);
 }
 
-/* ── Hero: desktop/mobil bildväxling ── */
-@media (max-width: 768px) {
-  .hero-bg {
-    background-image: url('/exterior-mobile-hero.png') !important;
-    background-position: center 55% !important;
-  }
-}
 
 /* Mobil-slideshow: dold på desktop */
 .om-oss-mobile-show {

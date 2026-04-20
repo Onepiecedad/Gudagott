@@ -13,7 +13,10 @@ export function ImageScrollHero({
   mobileSrc = "/exterior-mobile-hero.png",
 }: ImageScrollHeroProps) {
   const heroRef = useRef<HTMLDivElement | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth <= 768;
+  });
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
