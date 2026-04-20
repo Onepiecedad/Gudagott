@@ -13,10 +13,7 @@ export function ImageScrollHero({
   mobileSrc = "/exterior-mobile-hero.jpg",
 }: ImageScrollHeroProps) {
   const heroRef = useRef<HTMLDivElement | null>(null);
-  const [isMobile, setIsMobile] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return window.innerWidth <= 768;
-  });
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
@@ -31,9 +28,6 @@ export function ImageScrollHero({
   });
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
 
-  const activeSrc = isMobile ? mobileSrc : backgroundSrc;
-  const activePosition = isMobile ? "left 40%" : "center 60%";
-
   return (
     <div
       id="hero"
@@ -41,27 +35,37 @@ export function ImageScrollHero({
       className="hero-section"
       style={{ position: "relative", height: "100vh", overflow: "hidden" }}
     >
-      {/* ── Parallax wrapper ── */}
-      <motion.div
-        style={{
-          position: "absolute",
-          inset: isMobile ? "0" : "-6% 0",
-          y: isMobile ? 0 : backgroundY,
-          willChange: "transform",
-        }}
-      >
-        {/* ── Bakgrundsbild: hanteras av React (inte FM) för korrekt uppdatering ── */}
-        <div
+      {/* ── MOBIL: <img> hanteras av webbläsaren direkt, portrait-format ── */}
+      {isMobile && (
+        <img
+          src={mobileSrc}
+          alt="Gudagott exteriör"
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: `url(${activeSrc})`,
-            backgroundSize: "cover",
-            backgroundPosition: activePosition,
-            backgroundRepeat: "no-repeat",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center top",
           }}
         />
-      </motion.div>
+      )}
+
+      {/* ── DESKTOP: parallax bakgrundsbild ── */}
+      {!isMobile && (
+        <motion.div
+          style={{
+            position: "absolute",
+            inset: "-6% 0",
+            y: backgroundY,
+            backgroundImage: `url(${backgroundSrc})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center 60%",
+            backgroundRepeat: "no-repeat",
+            willChange: "transform",
+          }}
+        />
+      )}
 
       {/* ── Top shadow overlay ── */}
       <div style={{
@@ -92,31 +96,27 @@ export function ImageScrollHero({
           display: "none",
         }}
       >
-        <p
-          style={{
-            fontSize: "10px",
-            letterSpacing: "0.34em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.76)",
-            marginBottom: "0.9rem",
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 500,
-          }}
-        >
+        <p style={{
+          fontSize: "10px",
+          letterSpacing: "0.34em",
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,0.76)",
+          marginBottom: "0.9rem",
+          fontFamily: "'Inter', sans-serif",
+          fontWeight: 500,
+        }}>
           Svenska delikatesser
         </p>
-        <h1
-          style={{
-            fontFamily: "'Bebas Neue', sans-serif",
-            fontWeight: 400,
-            fontSize: "clamp(3.5rem, 14vw, 6rem)",
-            lineHeight: 0.92,
-            letterSpacing: "0.12em",
-            color: "#fff",
-            maxWidth: "8ch",
-            textShadow: "0 4px 24px rgba(0,0,0,0.32)",
-          }}
-        >
+        <h1 style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontWeight: 400,
+          fontSize: "clamp(3.5rem, 14vw, 6rem)",
+          lineHeight: 0.92,
+          letterSpacing: "0.12em",
+          color: "#fff",
+          maxWidth: "8ch",
+          textShadow: "0 4px 24px rgba(0,0,0,0.32)",
+        }}>
           Gudagott
         </h1>
       </motion.div>
