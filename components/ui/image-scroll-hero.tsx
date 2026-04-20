@@ -10,7 +10,7 @@ interface ImageScrollHeroProps {
 
 export function ImageScrollHero({
   backgroundSrc = "/exterior-new.jpg",
-  mobileSrc = "/exterior-mobile-hero.png",
+  mobileSrc = "/exterior-mobile-hero.jpg",
 }: ImageScrollHeroProps) {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(() => {
