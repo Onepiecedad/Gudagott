@@ -32,7 +32,7 @@ export function ImageScrollHero({
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
 
   const activeSrc = isMobile ? mobileSrc : backgroundSrc;
-  const activePosition = isMobile ? "center 55%" : "center 60%";
+  const activePosition = isMobile ? "center 35%" : "center 60%";
 
   return (
     <div
@@ -45,8 +45,8 @@ export function ImageScrollHero({
       <motion.div
         style={{
           position: "absolute",
-          inset: "-6% 0",
-          y: backgroundY,
+          inset: isMobile ? "0" : "-6% 0",
+          y: isMobile ? 0 : backgroundY,
           willChange: "transform",
         }}
       >
