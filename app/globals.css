@@ -494,12 +494,11 @@ body {
 }
 
 /* ── Hero: desktop/mobil bildväxling ── */
-.hero-bg-mobile { display: none; }
-.hero-bg-desktop { display: block; }
-
 @media (max-width: 768px) {
-  .hero-bg-desktop { display: none; }
-  .hero-bg-mobile  { display: block; }
+  .hero-bg {
+    background-image: url('/exterior-mobile-hero.png') !important;
+    background-position: center 55% !important;
+  }
 }
 
 /* Mobil-slideshow: dold på desktop */
